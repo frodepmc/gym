@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rayo-fitness",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "require('http').createServer((q,r)=>{const fs=require('fs');const p=q.url==='/'?'/index.html':q.url;const ext=p.split('.').pop();const types={html:'text/html',css:'text/css',js:'application/javascript',png:'image/png',jpg:'image/jpeg',svg:'image/svg+xml'};fs.readFile('.'+p,(e,d)=>{if(e){r.writeHead(404);r.end('Not found');}else{r.writeHead(200,{'Content-Type':types[ext]||'text/plain'});r.end(d);}});}).listen(3000)"],
+      "port": 3000
+    }
+  ]
+}
