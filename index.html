@@ -8,8 +8,7 @@
     <meta property="og:title" content="Rayo Fitness Club — Gimnasio 24h en Mallorca">
     <meta property="og:description" content="Tu gimnasio 24 horas en Mallorca. Entrenamiento personal, nutrición y preparación de competición.">
     <meta property="og:type" content="website">
-    <!-- TODO: Reemplazar favicon con logo real de Rayofitnessclub -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link rel="icon" type="image/png" href="img/logo-rayo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -195,22 +194,20 @@
         }
 
         .nav-logo {
-            font-family: var(--font-display);
-            font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: var(--text);
             z-index: 1001;
+            display: flex;
+            align-items: center;
         }
 
-        .nav-logo span {
-            font-weight: 400;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            color: var(--text-3);
-            display: block;
-            margin-top: -2px;
+        .nav-logo img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            transition: opacity 0.3s var(--ease);
+        }
+
+        .nav-logo:hover img {
+            opacity: 0.8;
         }
 
         .nav-links {
@@ -263,6 +260,11 @@
             color: var(--accent);
         }
 
+        .nav-social svg {
+            width: 28px;
+            height: 28px;
+        }
+
         /* Hamburger */
         .hamburger {
             display: none;
@@ -296,37 +298,120 @@
             transform: rotate(-45deg) translate(3.5px, -3.5px);
         }
 
-        /* Mobile Menu */
+        /* Mobile Menu — Timeline Dropdown */
         .mobile-menu {
             position: fixed;
-            inset: 0;
-            background: var(--bg);
+            top: var(--nav-h, 88px);
+            right: 0;
             z-index: 999;
+            background: var(--bg);
+            border-left: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.75rem 2.5rem 2rem;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2.5rem;
-            opacity: 0;
+            align-items: flex-end;
+            clip-path: inset(0 0 100% 0);
+            transition: clip-path 0.5s var(--ease);
             pointer-events: none;
-            transition: opacity 0.4s var(--ease);
         }
 
         .mobile-menu.open {
-            opacity: 1;
+            clip-path: inset(0 0 0 0);
             pointer-events: all;
         }
 
-        .mobile-menu a {
+        /* Timeline rail */
+        .mobile-menu-timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-right: 2rem;
+        }
+
+        /* Vertical line */
+        .mobile-menu-timeline::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0.6rem;
+            bottom: 0.6rem;
+            width: 2px;
+            background: var(--border);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.5s var(--ease) 0.1s;
+        }
+
+        .mobile-menu.open .mobile-menu-timeline::before {
+            transform: scaleY(1);
+        }
+
+        /* Timeline item */
+        .mobile-menu-item {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0.85rem 0;
+            opacity: 0;
+            transform: translateX(12px);
+            transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+        }
+
+        .mobile-menu.open .mobile-menu-item {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Stagger delays */
+        .mobile-menu.open .mobile-menu-item:nth-child(1) { transition-delay: 0.15s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(2) { transition-delay: 0.22s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(3) { transition-delay: 0.29s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(4) { transition-delay: 0.36s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(5) { transition-delay: 0.43s; }
+
+        /* Node dot on the timeline */
+        .mobile-menu-item::after {
+            content: '';
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--border);
+            transform: translateX(50%) translateY(-50%) scale(0);
+            transition: transform 0.3s var(--ease), background 0.3s;
+        }
+
+        .mobile-menu.open .mobile-menu-item::after {
+            transform: translateX(50%) translateY(-50%) scale(1);
+        }
+
+        .mobile-menu.open .mobile-menu-item:nth-child(1)::after { transition-delay: 0.2s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(2)::after { transition-delay: 0.27s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(3)::after { transition-delay: 0.34s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(4)::after { transition-delay: 0.41s; }
+        .mobile-menu.open .mobile-menu-item:nth-child(5)::after { transition-delay: 0.48s; }
+
+        .mobile-menu-item a {
             font-family: var(--font-display);
             font-weight: 700;
-            font-size: 2rem;
+            font-size: 1.75rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             color: var(--text);
             transition: color 0.3s;
         }
 
-        .mobile-menu a:hover {
+        .mobile-menu-item a:hover {
             color: var(--accent);
+        }
+
+        .mobile-menu-item:hover::after {
+            background: var(--accent);
         }
 
         /* ===========================================
@@ -346,15 +431,17 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-family: var(--font-display);
-            font-weight: 800;
-            font-size: clamp(18vw, 22vw, 28vw);
-            color: rgba(0, 0, 0, 0.04);
-            letter-spacing: 0.05em;
-            user-select: none;
             pointer-events: none;
-            white-space: nowrap;
-            text-transform: uppercase;
+            user-select: none;
+            opacity: 0.04;
+            width: clamp(400px, 55vw, 700px);
+            height: auto;
+        }
+
+        .hero-watermark img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
         .hero-glow {
@@ -472,7 +559,7 @@
             z-index: 1;
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 0;
             padding: 0 2rem;
             background: var(--bg);
         }
@@ -481,59 +568,45 @@
             width: 40px;
             height: 1px;
             background: var(--accent);
+            opacity: 0.5;
         }
 
-        .divider-bolt {
-            width: 18px;
-            height: 18px;
-            position: relative;
-            transform: rotate(12deg);
-        }
-
-        .divider-bolt::before,
-        .divider-bolt::after {
-            content: '';
-            position: absolute;
-            background: var(--accent);
-        }
-
-        .divider-bolt::before {
-            width: 2px;
-            height: 100%;
-            left: 50%;
-            top: 0;
-            transform: translateX(-50%) skewX(-15deg);
-        }
-
-        .divider-bolt::after {
-            width: 100%;
-            height: 2px;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%) skewY(-15deg);
-        }
-
-        .divider-dots {
+        /* Dumbbell: bar + plates */
+        .divider-dumbbell {
             display: flex;
-            gap: 6px;
             align-items: center;
+            gap: 0;
+            padding: 0 0.75rem;
         }
 
-        .divider-dot {
+        .divider-plate {
             width: 4px;
-            height: 4px;
+            border-radius: 1px;
             background: var(--accent);
-            opacity: 0.5;
+            opacity: 0.45;
         }
 
-        .divider-dot:nth-child(2) {
-            opacity: 0.8;
-            width: 6px;
+        .divider-plate-lg {
+            height: 18px;
+        }
+
+        .divider-plate-sm {
+            height: 12px;
+        }
+
+        .divider-bar {
+            width: 28px;
+            height: 2px;
+            background: var(--accent);
+            opacity: 0.35;
+        }
+
+        .divider-grip {
+            width: 14px;
             height: 6px;
-        }
-
-        .divider-dot:nth-child(3) {
-            opacity: 0.5;
+            border: 1.5px solid var(--accent);
+            border-radius: 1px;
+            opacity: 0.45;
         }
 
         /* Alternate divider for second instance */
@@ -615,6 +688,17 @@
             color: var(--text-3);
             letter-spacing: 0.08em;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
+        }
+
+        .stat-label .svc-icon {
+            width: 12px;
+            height: 12px;
+            opacity: 0.5;
+            flex-shrink: 0;
         }
 
         /* ===========================================
@@ -663,6 +747,21 @@
         .feature-card h4 {
             margin-bottom: 0.75rem;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card h4 .svc-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.4;
+            flex-shrink: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-card:hover h4 .svc-icon {
+            opacity: 0.7;
         }
 
         .feature-card p {
@@ -812,6 +911,16 @@
         .rates-card h3 {
             margin-bottom: 0;
             color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .rates-card h3 .svc-icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.4;
+            flex-shrink: 0;
         }
 
         .rates-items {
@@ -907,6 +1016,16 @@
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--border);
             margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .service-group-title .svc-icon {
+            width: 16px;
+            height: 16px;
+            opacity: 0.65;
+            flex-shrink: 0;
         }
 
         /* --- Accordion --- */
@@ -931,6 +1050,21 @@
         .accordion-header h3 {
             font-weight: 700;
             pointer-events: none;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        .accordion-header h3 .svc-icon {
+            width: 20px;
+            height: 20px;
+            opacity: 0.5;
+            flex-shrink: 0;
+            transition: opacity 0.3s;
+        }
+
+        .accordion-header:hover h3 .svc-icon {
+            opacity: 0.8;
         }
 
         .accordion-icon {
@@ -1233,7 +1367,7 @@
            FOOTER
            =========================================== */
         .footer {
-            padding: 3rem 0;
+            padding: 1.25rem 0;
             border-top: 1px solid var(--border);
             background: var(--bg);
         }
@@ -1245,11 +1379,14 @@
         }
 
         .footer-brand {
-            font-family: var(--font-display);
-            font-weight: 800;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-brand img {
+            height: 72px;
+            width: auto;
+            object-fit: contain;
         }
 
         .footer-copy {
@@ -1311,13 +1448,28 @@
         }
 
         @media (max-width: 700px) {
-            .nav-links,
-            .nav-social {
+            .nav-inner {
+                justify-content: center;
+                position: relative;
+            }
+
+            .nav-links {
                 display: none;
+            }
+
+            .nav-social {
+                position: absolute;
+                left: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             .hamburger {
                 display: flex;
+                position: absolute;
+                right: 2rem;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             .about-grid {
@@ -1412,9 +1564,7 @@
     <nav class="nav" id="nav">
         <div class="container nav-inner">
             <a href="#" class="nav-logo">
-                <!-- TODO: Sustituir texto por <img src="logo.svg" alt="Rayofitnessclub"> cuando esté el logo -->
-                RAYO
-                <span>Fitness Club</span>
+                <img src="img/logo-rayo.png" alt="Rayo Fitness Club">
             </a>
 
             <div class="nav-links">
@@ -1440,18 +1590,19 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#inicio">Inicio</a>
-        <a href="#gimnasio">Gimnasio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#contacto">Contacto</a>
-        <a href="https://instagram.com/rayofitnessclub" target="_blank" rel="noopener">Instagram</a>
+        <div class="mobile-menu-timeline">
+            <div class="mobile-menu-item"><a href="#inicio">Inicio</a></div>
+            <div class="mobile-menu-item"><a href="#gimnasio">Gimnasio</a></div>
+            <div class="mobile-menu-item"><a href="#servicios">Servicios</a></div>
+            <div class="mobile-menu-item"><a href="#contacto">Contacto</a></div>
+        </div>
     </div>
 
     <!-- ==========================================
          HERO
          ========================================== -->
     <section class="hero" id="inicio">
-        <div class="hero-watermark" aria-hidden="true">RAYO</div>
+        <div class="hero-watermark" aria-hidden="true"><img src="img/logo-rayo.png" alt=""></div>
         <div class="hero-glow" aria-hidden="true"></div>
 
         <div class="hero-content">
@@ -1470,16 +1621,14 @@
     <div class="divider" aria-hidden="true">
         <div class="divider-accent">
             <div class="divider-line"></div>
-            <div class="divider-dots">
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-            </div>
-            <div class="divider-bolt"></div>
-            <div class="divider-dots">
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
+            <div class="divider-dumbbell">
+                <div class="divider-plate divider-plate-lg"></div>
+                <div class="divider-plate divider-plate-sm"></div>
+                <div class="divider-bar"></div>
+                <div class="divider-grip"></div>
+                <div class="divider-bar"></div>
+                <div class="divider-plate divider-plate-sm"></div>
+                <div class="divider-plate divider-plate-lg"></div>
             </div>
             <div class="divider-line"></div>
         </div>
@@ -1495,7 +1644,7 @@
                     <img src="img/rayo-entrenando.jpeg" alt="Guiem Ray&oacute; entrenando en Rayo Fitness Club" loading="lazy">
                 </div>
                 <div class="about-text">
-                    <span class="section-label reveal">01 &mdash; Sobre m&iacute;</span>
+                    <span class="section-label reveal">Sobre m&iacute;</span>
                     <h2 class="reveal">Dedicaci&oacute;n al fitness y al rendimiento desde hace m&aacute;s de una d&eacute;cada</h2>
                     <!-- TODO: Sustituir este texto por el que envíe Rayó -->
                     <p class="reveal">Soy <span class="highlight">Guiem Ray&oacute;</span>. Mi pasi&oacute;n es ayudar a las personas a transformar su f&iacute;sico y su rendimiento. Ya sea que busques ponerte en forma, mejorar tu alimentaci&oacute;n o prepararte para competir, mi enfoque es directo: <span class="highlight">trabajo constante, plan a medida y seguimiento real</span>.</p>
@@ -1503,15 +1652,15 @@
                     <div class="stats-grid reveal">
                         <div class="stat-card">
                             <span class="stat-number">15+</span>
-                            <span class="stat-label">Casos de &eacute;xito</span>
+                            <span class="stat-label"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>Casos de &eacute;xito</span>
                         </div>
                         <div class="stat-card">
                             <span class="stat-number">24/7</span>
-                            <span class="stat-label">Acceso al gimnasio</span>
+                            <span class="stat-label"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Acceso al gimnasio</span>
                         </div>
                         <div class="stat-card">
                             <span class="stat-number">100%</span>
-                            <span class="stat-label">Planes personalizados</span>
+                            <span class="stat-label"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>Planes personalizados</span>
                         </div>
                     </div>
                 </div>
@@ -1524,7 +1673,7 @@
          ========================================== -->
     <section class="gym" id="gimnasio">
         <div class="container">
-            <span class="section-label reveal">02 &mdash; Gimnasio 24h</span>
+            <span class="section-label reveal">Gimnasio 24h</span>
 
             <div class="gym-intro reveal">
                 <h2>Tu espacio de entrenamiento, a cualquier hora</h2>
@@ -1533,15 +1682,15 @@
 
             <div class="features-grid">
                 <div class="feature-card reveal">
-                    <h4>Acceso 24 Horas</h4>
+                    <h4><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Acceso 24 Horas</h4>
                     <p>Entrena de d&iacute;a o de noche. Tu gimnasio siempre abierto, adaptado a tu horario.</p>
                 </div>
                 <div class="feature-card reveal reveal-delay-1">
-                    <h4>Equipamiento Profesional</h4>
+                    <h4><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="12" x2="6" y2="12"/><rect x="6" y="9" width="3" height="6" rx="0.5"/><line x1="9" y1="12" x2="15" y2="12"/><rect x="15" y="9" width="3" height="6" rx="0.5"/><line x1="18" y1="12" x2="22" y2="12"/></svg>Equipamiento Profesional</h4>
                     <p>Maquinaria de <strong>Etenon Fitness</strong>, <strong>Titanium Strength</strong> y <strong>Fitmaker</strong> para un entrenamiento completo y seguro.</p>
                 </div>
                 <div class="feature-card reveal reveal-delay-2">
-                    <h4>Ambiente de Trabajo</h4>
+                    <h4><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Ambiente de Trabajo</h4>
                     <p>Un espacio dise&ntilde;ado para que te concentres en lo que importa: tus resultados.</p>
                 </div>
             </div>
@@ -1565,7 +1714,7 @@
             <!-- Rates -->
             <div class="rates-card reveal">
                 <div class="rates-header">
-                    <h3>Tarifas</h3>
+                    <h3><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>Tarifas</h3>
                 </div>
                 <div class="rates-items">
                     <div class="rate-item">
@@ -1597,16 +1746,14 @@
     <div class="divider divider-alt" aria-hidden="true">
         <div class="divider-accent">
             <div class="divider-line"></div>
-            <div class="divider-dots">
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-            </div>
-            <div class="divider-bolt"></div>
-            <div class="divider-dots">
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
-                <div class="divider-dot"></div>
+            <div class="divider-dumbbell">
+                <div class="divider-plate divider-plate-lg"></div>
+                <div class="divider-plate divider-plate-sm"></div>
+                <div class="divider-bar"></div>
+                <div class="divider-grip"></div>
+                <div class="divider-bar"></div>
+                <div class="divider-plate divider-plate-sm"></div>
+                <div class="divider-plate divider-plate-lg"></div>
             </div>
             <div class="divider-line"></div>
         </div>
@@ -1617,7 +1764,7 @@
          ========================================== -->
     <section class="services" id="servicios">
         <div class="container">
-            <span class="section-label reveal">03 &mdash; Servicios</span>
+            <span class="section-label reveal">Servicios</span>
 
             <div class="services-intro reveal">
                 <h2>Preparaci&oacute;n f&iacute;sica y nutrici&oacute;n a medida</h2>
@@ -1626,11 +1773,11 @@
 
             <!-- ENTRENOS -->
             <div class="service-group reveal">
-                <h4 class="service-group-title">Entrenos</h4>
+                <h4 class="service-group-title"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="2" y1="12" x2="6" y2="12"/><rect x="6" y="9" width="3" height="6" rx="0.5"/><line x1="9" y1="12" x2="15" y2="12"/><rect x="15" y="9" width="3" height="6" rx="0.5"/><line x1="18" y1="12" x2="22" y2="12"/></svg>Entrenos</h4>
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Entrenos Grupales</h3>
+                        <h3><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Entrenos Grupales</h3>
                         <div class="accordion-icon">+</div>
                     </div>
                     <div class="accordion-content">
@@ -1648,7 +1795,7 @@
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Entrenos Individuales</h3>
+                        <h3><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Entrenos Individuales</h3>
                         <div class="accordion-icon">+</div>
                     </div>
                     <div class="accordion-content">
@@ -1666,7 +1813,7 @@
 
                 <div class="accordion-item">
                     <div class="accordion-header">
-                        <h3>Entrenos Online</h3>
+                        <h3><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Entrenos Online</h3>
                         <div class="accordion-icon">+</div>
                     </div>
                     <div class="accordion-content">
@@ -1686,7 +1833,7 @@
             <!-- NUTRICION + COMPETICION side by side -->
             <div class="service-groups-row reveal">
                 <div class="service-group">
-                    <h4 class="service-group-title">Nutrici&oacute;n</h4>
+                    <h4 class="service-group-title"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 1 5 5c0 4-5 7-5 7s-5-3-5-7a5 5 0 0 1 5-5z"/><path d="M12 14v8"/><path d="M9 18h6"/></svg>Nutrici&oacute;n</h4>
                     <div class="service-info">
                         <h4>Seguimiento Nutricional</h4>
                         <p>Plan de alimentaci&oacute;n adaptado a tu dieta, preferencias y objetivos. Seguimiento continuo con ajustes peri&oacute;dicos.</p>
@@ -1700,7 +1847,7 @@
                 </div>
 
                 <div class="service-group">
-                    <h4 class="service-group-title">Preparaci&oacute;n de Competici&oacute;n</h4>
+                    <h4 class="service-group-title"><svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>Preparaci&oacute;n de Competici&oacute;n</h4>
                     <div class="service-info">
                         <h4>Competir en Culturismo</h4>
                         <p>Programa integral para competiciones de culturismo natural. Entrenamiento, alimentaci&oacute;n y preparaci&oacute;n intensiva pre-competici&oacute;n.</p>
@@ -1721,7 +1868,7 @@
          ========================================== -->
     <section class="contact" id="contacto">
         <div class="container">
-            <span class="section-label reveal">04 &mdash; Contacto</span>
+            <span class="section-label reveal">Contacto</span>
 
             <div class="contact-grid">
                 <div class="contact-info reveal">
@@ -1806,7 +1953,7 @@
          ========================================== -->
     <footer class="footer">
         <div class="container footer-inner">
-            <span class="footer-brand">Rayo Fitness Club</span>
+            <span class="footer-brand"><img src="img/logo-rayo.png" alt="Rayo Fitness Club"></span>
             <span class="footer-copy">&copy; 2026 Rayo Fitness Club. Todos los derechos reservados.</span>
         </div>
     </footer>
@@ -1828,8 +1975,14 @@
 
         // --- Nav background on scroll ---
         const nav = document.getElementById('nav');
+        function updateNavHeight() {
+            document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+        }
+        updateNavHeight();
+
         window.addEventListener('scroll', () => {
             nav.classList.toggle('scrolled', window.scrollY > 60);
+            updateNavHeight();
         }, { passive: true });
 
         // --- Mobile Menu ---
@@ -1839,7 +1992,6 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('open');
-            document.body.classList.toggle('no-scroll');
         });
 
         // Close mobile menu on link click
@@ -1847,7 +1999,6 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 mobileMenu.classList.remove('open');
-                document.body.classList.remove('no-scroll');
             });
         });
 
