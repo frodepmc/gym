@@ -104,7 +104,7 @@
         }
 
         section {
-            padding: 100px 0;
+            padding: 64px 0;
         }
 
         /* --- Section Label --- */
@@ -116,7 +116,7 @@
             letter-spacing: 0.25em;
             text-transform: uppercase;
             color: var(--accent);
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.25rem;
         }
 
         /* --- Buttons --- */
@@ -450,7 +450,7 @@
            =========================================== */
         .divider {
             position: relative;
-            height: 80px;
+            height: 40px;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -551,41 +551,29 @@
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
+            gap: 3rem;
+            align-items: center;
         }
 
         .about-photo {
-            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
         .about-photo img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
             display: block;
         }
 
-        .about-photo-placeholder {
-            width: 100%;
-            aspect-ratio: 4 / 3;
-            background: var(--bg-3);
-            border: 2px dashed var(--border);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.75rem;
-            color: var(--text-3);
-            font-size: 0.85rem;
-        }
-
         .about-text h2 {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .about-text p {
             font-size: 1.05rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .about-text .highlight {
@@ -595,15 +583,17 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 1.5rem;
         }
 
         .stat-card {
-            padding: 2rem;
+            padding: 1.1rem 0.75rem;
             background: var(--bg-3);
             border: 1px solid var(--border);
             transition: border-color 0.3s;
+            text-align: center;
         }
 
         .stat-card:hover {
@@ -613,15 +603,15 @@
         .stat-number {
             font-family: var(--font-display);
             font-weight: 800;
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--accent);
             display: block;
             line-height: 1;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .stat-label {
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             color: var(--text-3);
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -635,11 +625,11 @@
         }
 
         .gym-intro {
-            margin-bottom: 3.5rem;
+            margin-bottom: 2rem;
         }
 
         .gym-intro h2 {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.75rem;
             font-size: clamp(1.8rem, 3.2vw, 2.5rem);
             letter-spacing: -0.03em;
         }
@@ -651,12 +641,12 @@
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 3.5rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .feature-card {
-            padding: 2rem 1.75rem;
+            padding: 1.5rem 1.5rem;
             background: var(--bg-3);
             border: 1px solid var(--border);
             border-left: 3px solid var(--accent);
@@ -689,8 +679,8 @@
         .gym-gallery {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            margin-bottom: 3.5rem;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
         }
 
         .gym-gallery-item {
@@ -711,26 +701,43 @@
 
         /* Rates */
         .rates-card {
-            padding: 2.5rem;
+            padding: 2rem;
             background: var(--bg-3);
             border: 1px solid var(--border);
-            max-width: 580px;
+        }
+
+        .rates-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.25rem;
         }
 
         .rates-card h3 {
-            margin-bottom: 2rem;
+            margin-bottom: 0;
             color: var(--text);
+        }
+
+        .rates-items {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
         }
 
         .rate-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.25rem 0;
+            padding: 1rem 1.25rem;
             border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
         }
 
-        .rate-item:last-of-type {
+        .rate-item:nth-child(2n) {
+            border-right: none;
+        }
+
+        .rate-item:nth-last-child(-n+2) {
             border-bottom: none;
         }
 
@@ -752,12 +759,19 @@
             color: var(--text-3);
         }
 
+        .rates-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 1.25rem;
+            gap: 1rem;
+        }
+
         .rates-note {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-3);
-            margin-top: 1.5rem;
-            margin-bottom: 1.5rem;
             font-style: italic;
+            margin: 0;
         }
 
         /* ===========================================
@@ -769,11 +783,11 @@
 
         .services-intro {
             max-width: 650px;
-            margin-bottom: 3.5rem;
+            margin-bottom: 2rem;
         }
 
         .services-intro h2 {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.75rem;
         }
 
         .services-intro p {
@@ -781,7 +795,7 @@
         }
 
         .service-group {
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .service-group-title {
@@ -805,7 +819,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 1.5rem 0;
+            padding: 1.15rem 0;
             cursor: pointer;
             transition: color 0.3s;
             user-select: none;
@@ -850,7 +864,7 @@
         }
 
         .accordion-body {
-            padding: 0 0 2rem 0;
+            padding: 0 0 1.25rem 0;
         }
 
         .accordion-body p {
@@ -882,10 +896,10 @@
 
         /* Service info cards (non-accordion) */
         .service-info {
-            padding: 2rem;
+            padding: 1.5rem;
             background: var(--bg-3);
             border: 1px solid var(--border);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .service-info h4 {
@@ -913,25 +927,25 @@
 
         .contact-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 2.5rem;
             align-items: start;
         }
 
         .contact-info h2 {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.75rem;
         }
 
         .contact-info > p {
             font-size: 1.05rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-details {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
-            margin-bottom: 2.5rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .contact-item {
@@ -1061,8 +1075,8 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 3rem 2rem;
-            min-height: 380px;
+            padding: 2.5rem 2rem;
+            min-height: 300px;
             border: 1px solid var(--border);
             background: var(--bg-3);
         }
@@ -1150,7 +1164,24 @@
             }
 
             section {
-                padding: 70px 0;
+                padding: 48px 0;
+            }
+
+            .rates-items {
+                grid-template-columns: 1fr;
+            }
+
+            .rate-item {
+                border-right: none;
+            }
+
+            .rate-item:nth-last-child(2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .rates-footer {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
 
@@ -1166,12 +1197,17 @@
 
             .about-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 0.75rem;
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 2rem;
             }
 
             .service-info-grid {
@@ -1197,19 +1233,28 @@
             h1 { font-size: clamp(2.2rem, 10vw, 3.5rem); }
 
             section {
-                padding: 60px 0;
+                padding: 40px 0;
             }
 
             .container {
                 padding: 0 1.25rem;
             }
 
+            .stat-card {
+                padding: 1rem 0.5rem;
+            }
+
             .stat-number {
-                font-size: 2rem;
+                font-size: 1.4rem;
+            }
+
+            .stat-label {
+                font-size: 0.6rem;
+                letter-spacing: 0.04em;
             }
 
             .rates-card {
-                padding: 1.75rem;
+                padding: 1.25rem;
             }
         }
     </style>
@@ -1302,28 +1347,28 @@
     <section class="about" id="sobre">
         <div class="container">
             <div class="about-grid">
+                <div class="about-photo reveal">
+                    <img src="img/rayo-entrenando.jpeg" alt="Guiem Ray&oacute; entrenando en Rayo Fitness Club" loading="lazy">
+                </div>
                 <div class="about-text">
                     <span class="section-label reveal">01 &mdash; Sobre m&iacute;</span>
                     <h2 class="reveal">Dedicaci&oacute;n al fitness y al rendimiento desde hace m&aacute;s de una d&eacute;cada</h2>
-                    <div class="about-photo reveal">
-                        <img src="img/rayo-entrenando.jpeg" alt="Guiem Ray&oacute; entrenando en Rayo Fitness Club" loading="lazy">
-                    </div>
                     <!-- TODO: Sustituir este texto por el que envíe Rayó -->
                     <p class="reveal">Soy <span class="highlight">Guiem Ray&oacute;</span>. Mi pasi&oacute;n es ayudar a las personas a transformar su f&iacute;sico y su rendimiento. Ya sea que busques ponerte en forma, mejorar tu alimentaci&oacute;n o prepararte para competir, mi enfoque es directo: <span class="highlight">trabajo constante, plan a medida y seguimiento real</span>.</p>
                     <p class="reveal">En Rayo Fitness Club encontrar&aacute;s un espacio equipado para entrenar a cualquier hora, y un equipo comprometido con tus resultados.</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card reveal">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Casos de &eacute;xito</span>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-1">
-                        <span class="stat-number">24/7</span>
-                        <span class="stat-label">Acceso al gimnasio</span>
-                    </div>
-                    <div class="stat-card reveal reveal-delay-2">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Planes personalizados</span>
+                    <div class="stats-grid reveal">
+                        <div class="stat-card">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Casos de &eacute;xito</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Acceso al gimnasio</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Planes personalizados</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1375,25 +1420,31 @@
 
             <!-- Rates -->
             <div class="rates-card reveal">
-                <h3>Tarifas</h3>
-                <div class="rate-item">
-                    <span class="rate-name">1 Mes</span>
-                    <span class="rate-price">60&euro;</span>
+                <div class="rates-header">
+                    <h3>Tarifas</h3>
                 </div>
-                <div class="rate-item">
-                    <span class="rate-name">3 Meses</span>
-                    <span class="rate-price">150&euro; <small>/50&euro; mes</small></span>
+                <div class="rates-items">
+                    <div class="rate-item">
+                        <span class="rate-name">1 Mes</span>
+                        <span class="rate-price">60&euro;</span>
+                    </div>
+                    <div class="rate-item">
+                        <span class="rate-name">3 Meses</span>
+                        <span class="rate-price">150&euro; <small>/50&euro; mes</small></span>
+                    </div>
+                    <div class="rate-item">
+                        <span class="rate-name">6 Meses</span>
+                        <span class="rate-price">240&euro; <small>/40&euro; mes</small></span>
+                    </div>
+                    <div class="rate-item">
+                        <span class="rate-name">12 Meses</span>
+                        <span class="rate-price">450&euro; <small>/37,50&euro; mes</small></span>
+                    </div>
                 </div>
-                <div class="rate-item">
-                    <span class="rate-name">6 Meses</span>
-                    <span class="rate-price">240&euro; <small>/40&euro; mes</small></span>
+                <div class="rates-footer">
+                    <p class="rates-note">* Las tarifas pueden actualizarse. Cont&aacute;ctanos para promociones activas.</p>
+                    <a href="#contacto" class="btn btn-outline btn-arrow">Contactar</a>
                 </div>
-                <div class="rate-item">
-                    <span class="rate-name">12 Meses</span>
-                    <span class="rate-price">450&euro; <small>/37,50&euro; mes</small></span>
-                </div>
-                <p class="rates-note">* Las tarifas pueden actualizarse peri&oacute;dicamente. Cont&aacute;ctanos para conocer promociones activas.</p>
-                <a href="#contacto" class="btn btn-outline btn-arrow">Contactar</a>
             </div>
         </div>
     </section>
