@@ -695,8 +695,104 @@
             transition: transform 0.5s var(--ease);
         }
 
+        .gym-gallery-item {
+            cursor: pointer;
+        }
+
         .gym-gallery-item:hover img {
             transform: scale(1.05);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.92);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s var(--ease);
+            padding: 2rem;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            transform: scale(0.92);
+            transition: transform 0.4s var(--ease);
+        }
+
+        .lightbox.open img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+            z-index: 1;
+        }
+
+        .lightbox-close:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.25);
+            color: #fff;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.3s var(--ease);
+        }
+
+        .lightbox-nav:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .lightbox-prev { left: 1.5rem; }
+        .lightbox-next { right: 1.5rem; }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            font-family: var(--font-display);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
         }
 
         /* Rates */
@@ -782,12 +878,15 @@
         }
 
         .services-intro {
-            max-width: 650px;
-            margin-bottom: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            align-items: end;
+            margin-bottom: 2.5rem;
         }
 
         .services-intro h2 {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0;
         }
 
         .services-intro p {
@@ -865,15 +964,19 @@
 
         .accordion-body {
             padding: 0 0 1.25rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
         }
 
         .accordion-body p {
             font-size: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 0;
         }
 
         .accordion-body ul {
-            margin-top: 0.75rem;
+            margin-top: 0;
         }
 
         .accordion-body li {
@@ -916,6 +1019,28 @@
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
             margin-top: 1.5rem;
+        }
+
+        /* Side-by-side service groups */
+        .service-groups-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .service-groups-row .service-group {
+            margin-bottom: 0;
+        }
+
+        .service-groups-row .service-info {
+            margin-bottom: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-groups-row .service-info p {
+            flex: 1;
         }
 
         /* ===========================================
@@ -1200,6 +1325,16 @@
                 gap: 2rem;
             }
 
+            .services-intro {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .service-groups-row {
+                grid-template-columns: 1fr;
+                gap: 3.5rem;
+            }
+
             .stats-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 0.75rem;
@@ -1212,6 +1347,15 @@
 
             .service-info-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .accordion-body {
+                grid-template-columns: 1fr;
+                gap: 0.75rem;
+            }
+
+            .accordion-body p {
+                margin-bottom: 0;
             }
         }
 
@@ -1539,35 +1683,34 @@
                 </div>
             </div>
 
-            <!-- NUTRICION -->
-            <div class="service-group reveal">
-                <h4 class="service-group-title">Nutrici&oacute;n</h4>
-
-                <div class="service-info">
-                    <h4>Seguimiento Nutricional Personalizado</h4>
-                    <p>Plan de alimentaci&oacute;n adaptado a tu dieta, preferencias y objetivos. Seguimiento continuo con fotos, v&iacute;deos y ajustes peri&oacute;dicos para asegurar que tu nutrici&oacute;n acompa&ntilde;e tu entrenamiento.</p>
-                    <ul style="margin-top: 1rem;">
-                        <li>Plan nutricional personalizado</li>
-                        <li>Seguimiento continuo con reportes visuales</li>
-                        <li>Adaptado a tu estilo de vida y preferencias</li>
-                        <li>Ajustes peri&oacute;dicos seg&uacute;n tu progreso</li>
-                    </ul>
+            <!-- NUTRICION + COMPETICION side by side -->
+            <div class="service-groups-row reveal">
+                <div class="service-group">
+                    <h4 class="service-group-title">Nutrici&oacute;n</h4>
+                    <div class="service-info">
+                        <h4>Seguimiento Nutricional</h4>
+                        <p>Plan de alimentaci&oacute;n adaptado a tu dieta, preferencias y objetivos. Seguimiento continuo con ajustes peri&oacute;dicos.</p>
+                        <ul style="margin-top: 1rem;">
+                            <li>Plan nutricional personalizado</li>
+                            <li>Seguimiento con reportes visuales</li>
+                            <li>Adaptado a tu estilo de vida</li>
+                            <li>Ajustes seg&uacute;n tu progreso</li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-            <!-- COMPETICION -->
-            <div class="service-group reveal">
-                <h4 class="service-group-title">Preparaci&oacute;n de Competici&oacute;n</h4>
-
-                <div class="service-info">
-                    <h4>Preparaci&oacute;n para Competir en Culturismo</h4>
-                    <p>Programa integral de preparaci&oacute;n para competiciones de culturismo natural. Planificaci&oacute;n de entrenamientos, seguimiento exhaustivo, alimentaci&oacute;n espec&iacute;fica y preparaci&oacute;n intensiva pre-competici&oacute;n para llegar en tu mejor forma al escenario.</p>
-                    <ul style="margin-top: 1rem;">
-                        <li>Planificaci&oacute;n de entrenamiento espec&iacute;fica</li>
-                        <li>Nutrici&oacute;n de competici&oacute;n</li>
-                        <li>Seguimiento exhaustivo y ajustes semanales</li>
-                        <li>Preparaci&oacute;n intensiva pre-competici&oacute;n</li>
-                    </ul>
+                <div class="service-group">
+                    <h4 class="service-group-title">Preparaci&oacute;n de Competici&oacute;n</h4>
+                    <div class="service-info">
+                        <h4>Competir en Culturismo</h4>
+                        <p>Programa integral para competiciones de culturismo natural. Entrenamiento, alimentaci&oacute;n y preparaci&oacute;n intensiva pre-competici&oacute;n.</p>
+                        <ul style="margin-top: 1rem;">
+                            <li>Entrenamiento espec&iacute;fico</li>
+                            <li>Nutrici&oacute;n de competici&oacute;n</li>
+                            <li>Seguimiento y ajustes semanales</li>
+                            <li>Prep. intensiva pre-competici&oacute;n</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1649,6 +1792,15 @@
         </div>
     </section>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Cerrar">&times;</button>
+        <button class="lightbox-nav lightbox-prev" aria-label="Anterior">&#8249;</button>
+        <button class="lightbox-nav lightbox-next" aria-label="Siguiente">&#8250;</button>
+        <img src="" alt="">
+        <span class="lightbox-caption"></span>
+    </div>
+
     <!-- ==========================================
          FOOTER
          ========================================== -->
@@ -1728,6 +1880,55 @@
                     item.classList.add('open');
                 }
             });
+        });
+
+        // --- Lightbox ---
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = lightbox.querySelector('img');
+        const lbCaption = lightbox.querySelector('.lightbox-caption');
+        const galleryItems = document.querySelectorAll('.gym-gallery-item');
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const img = galleryItems[index].querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbCaption.textContent = img.alt;
+            lightbox.classList.add('open');
+            document.body.classList.add('no-scroll');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.classList.remove('no-scroll');
+        }
+
+        function navigateLightbox(dir) {
+            currentIndex = (currentIndex + dir + galleryItems.length) % galleryItems.length;
+            const img = galleryItems[currentIndex].querySelector('img');
+            lbImg.src = img.src;
+            lbImg.alt = img.alt;
+            lbCaption.textContent = img.alt;
+        }
+
+        galleryItems.forEach((item, i) => {
+            item.addEventListener('click', () => openLightbox(i));
+        });
+
+        lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.querySelector('.lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
+        lightbox.querySelector('.lightbox-next').addEventListener('click', () => navigateLightbox(1));
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
         });
 
         // --- Contact Form (demo) ---
