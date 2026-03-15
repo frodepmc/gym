@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="img/logo-rayo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ===========================================
@@ -35,12 +35,15 @@
             --text: #1A1A1A;
             --text-2: #5A5856;
             --text-3: #8A8884;
-            --accent: #C97580;
-            --accent-dark: #94525A;
-            --accent-hover: #B96C76;
-            --accent-glow: rgba(201, 117, 128, 0.16);
-            --font-display: 'Barlow Condensed', sans-serif;
-            --font-body: 'Barlow', sans-serif;
+            --accent: #BBAF8D;
+            --accent-dark: #8D7F5E;
+            --accent-hover: #A89C79;
+            --accent-glow: rgba(187, 175, 141, 0.18);
+            --font-display: 'Montserrat', sans-serif;
+            --font-hero: 'Cormorant Garamond', serif;
+            --font-body: 'Montserrat', sans-serif;
+            --font-hero-display: 'Barlow Condensed', sans-serif;
+            --font-hero-body: 'Barlow', sans-serif;
             --ease: cubic-bezier(0.22, 1, 0.36, 1);
             --max-w: 1140px;
         }
@@ -53,7 +56,7 @@
 
         body {
             font-family: var(--font-body);
-            font-weight: 300;
+            font-weight: 400;
             background: var(--bg);
             color: var(--text);
             line-height: 1.7;
@@ -462,7 +465,7 @@
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
+            max-width: 720px;
             padding: 0 2rem;
         }
 
@@ -478,7 +481,7 @@
         .hero-content > *:nth-child(4) { animation-delay: 0.9s; }
 
         .hero-tag {
-            font-family: var(--font-display);
+            font-family: var(--font-hero-display);
             font-weight: 600;
             font-size: 0.75rem;
             letter-spacing: 0.3em;
@@ -488,20 +491,36 @@
         }
 
         .hero h1 {
-            margin-bottom: 1.5rem;
+            display: inline-block;
+            font-family: var(--font-hero);
+            font-weight: 600;
+            font-size: clamp(3rem, 6.6vw, 5.3rem);
+            line-height: 1.08;
+            letter-spacing: 0;
+            text-transform: uppercase;
+            text-align: center;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto 1.75rem;
         }
 
         .hero h1 em {
-            font-style: normal;
+            font-style: italic;
             color: var(--accent-dark);
         }
 
         .hero-sub {
+            font-family: var(--font-hero-body);
+            font-weight: 300;
             font-size: 1.15rem;
             color: var(--text-2);
             max-width: 550px;
             margin: 0 auto 2.5rem;
             line-height: 1.8;
+        }
+
+        .hero .btn {
+            font-family: var(--font-hero-display);
         }
 
         .scroll-indicator {
