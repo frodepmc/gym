@@ -11,7 +11,7 @@
     <link rel="icon" type="image/png" href="img/logo-rayo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* ===========================================
@@ -40,7 +40,7 @@
             --accent-hover: #A89C79;
             --accent-glow: rgba(187, 175, 141, 0.18);
             --font-display: 'Montserrat', sans-serif;
-            --font-hero: 'Cormorant Garamond', serif;
+            --font-hero: 'DM Serif Display', serif;
             --font-body: 'Montserrat', sans-serif;
             --font-hero-display: 'Barlow Condensed', sans-serif;
             --font-hero-body: 'Barlow', sans-serif;
@@ -114,7 +114,7 @@
         .section-label {
             display: inline-block;
             font-family: var(--font-display);
-            font-weight: 600;
+            font-weight: 400;
             font-size: 0.75rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
@@ -984,7 +984,7 @@
 
         .feature-band {
             background: var(--bg);
-            padding-top: 0;
+            padding-top: clamp(2rem, 4vw, 4rem);
         }
 
         .feature-band .features-grid {
