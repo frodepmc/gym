@@ -1,0 +1,11 @@
+{
+  "name": "gym",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "playwright": "playwright"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2"
+  }
+}

@@ -954,16 +954,16 @@
 
         .gym-gallery-item:nth-child(2) {
             grid-column: 3;
-            grid-row: 1;
+            grid-row: 1 / span 2;
         }
 
         .gym-gallery-item:nth-child(3) {
-            grid-column: 3;
-            grid-row: 2;
+            grid-column: 1;
+            grid-row: 3;
         }
 
         .gym-gallery-item:nth-child(4) {
-            grid-column: 1 / span 3;
+            grid-column: 2 / span 2;
             grid-row: 3;
         }
 
@@ -980,6 +980,10 @@
 
         .gym-gallery-item:hover img {
             transform: scale(1.05);
+        }
+
+        .gym-gallery-item--facade img {
+            object-position: center top;
         }
 
         .feature-band {
@@ -1437,6 +1441,32 @@
         .contact-item svg {
             color: var(--accent-dark);
             flex-shrink: 0;
+        }
+
+        .contact-visual {
+            margin-top: 1.75rem;
+            border: 1px solid var(--border);
+            background: var(--bg-3);
+            overflow: hidden;
+        }
+
+        .contact-visual img {
+            width: 100%;
+            aspect-ratio: 4 / 5;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+        }
+
+        .contact-visual figcaption {
+            padding: 0.9rem 1rem 1rem;
+            border-top: 1px solid var(--border);
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-3);
         }
 
         .instagram-link {
@@ -2058,14 +2088,14 @@
                 <div class="gym-gallery-item">
                     <img src="img/gym-racks.jpeg" alt="Zona de fuerza con racks y mancuernas en Rayo Fitness Club, Sencelles" loading="lazy">
                 </div>
+                <div class="gym-gallery-item gym-gallery-item--facade">
+                    <img src="img/facade-open.jpeg" alt="Entrada abierta de Rayo Fitness Club con vista del interior del gimnasio en Sencelles" loading="lazy">
+                </div>
                 <div class="gym-gallery-item">
                     <img src="img/gym-etenon.jpeg" alt="Maquinaria Etenon Fitness en Rayo Fitness Club" loading="lazy">
                 </div>
                 <div class="gym-gallery-item">
                     <img src="fwdfotosrfc/IMG_2775.jpeg" alt="Equipamiento Fitmaker en la zona de trabajo de Rayo Fitness Club" loading="lazy">
-                </div>
-                <div class="gym-gallery-item">
-                    <img src="img/gym-equipamiento.jpeg" alt="Sala de entrenamiento equipada en Rayo Fitness Club, Sencelles" loading="lazy">
                 </div>
             </div>
         </div>
@@ -2265,6 +2295,11 @@
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
                         @rayofitnessclub
                     </a>
+
+                    <figure class="contact-visual reveal reveal-delay-1">
+                        <img src="img/facade-closed.jpeg" alt="Entrada principal de Rayo Fitness Club en Sencelles" loading="lazy">
+                        <figcaption>Entrada principal · Carrer des Rafal, 60</figcaption>
+                    </figure>
                 </div>
 
                 <div id="form-container" class="reveal reveal-delay-1">
